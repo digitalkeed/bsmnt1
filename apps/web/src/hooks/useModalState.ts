@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { setCloseModal, setOpenModal } from 'state/application/reducer'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
-import { ModalNameType } from 'uniswap/src/features/telemetry/constants'
 
 export type ModalState = {
   isOpen: boolean
@@ -11,7 +10,7 @@ export type ModalState = {
   toggleModal: () => void
 }
 
-export function useModalState(modalName: ModalNameType): ModalState {
+export function useModalState(modalName: string): ModalState {
   const dispatch = useAppDispatch()
   const isOpen = useAppSelector((state) => state.application.openModal?.name === modalName)
 

@@ -49,38 +49,25 @@
     <!-- Include <link rel="preload"> for js assets so that they are loaded with high priority. -->
     <%= htmlWebpackPlugin.files.js.map((href) => `<link rel="preload" href="${href}" as="script" />`).join('\n    ') %>
    
+    <!-- Preload Raleway font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+   
     <style>
       * {
-        font-family: 'Basel', sans-serif;
+        font-family: 'Raleway', sans-serif;
         box-sizing: border-box;
       }
 
       /**
-          Explicitly load Basel var from public/ so it does not block LCP's critical path.
+          Explicitly load Raleway from Google Fonts so it loads with high priority.
         */
-      @font-face {
-        font-family: 'Basel';
-        font-weight: 535;
-        font-style: normal;
-        font-display: block;
-        src: 
-          url('%PUBLIC_URL%/fonts/Basel-Grotesk-Medium.woff2') format('woff2'),
-          url('%PUBLIC_URL%/fonts/Basel-Grotesk-Medium.woff') format('woff');
-      }
-
-      @font-face {
-        font-family: 'Basel';
-        font-weight: 485;
-        font-style: normal;
-        font-display: block;
-        src: 
-          url('%PUBLIC_URL%/fonts/Basel-Grotesk-Book.woff2') format('woff2'),
-          url('%PUBLIC_URL%/fonts/Basel-Grotesk-Book.woff') format('woff');
-      }
 
       @supports (font-variation-settings: normal) {
         * {
-          font-family: 'Basel', sans-serif;
+          font-family: 'Raleway', sans-serif;
         }
       }
 

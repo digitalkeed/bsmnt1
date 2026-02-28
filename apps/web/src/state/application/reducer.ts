@@ -1,38 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { PositionInfo } from 'components/Liquidity/types'
-import { PopupType } from 'components/Popups/types'
-import { ModalName, ModalNameType } from 'uniswap/src/features/telemetry/constants'
+import { ModalNameType } from 'uniswap/src/features/telemetry/constants'
 
-export type LiquidityModalInitialState = PositionInfo
-
-type AddLiquidityModalParams = {
-  name: typeof ModalName.AddLiquidity
-  initialState: LiquidityModalInitialState
-}
-
-type RemoveLiquidityModalParams = {
-  name: typeof ModalName.RemoveLiquidity
-  initialState: LiquidityModalInitialState
-}
-
-type ClaimFeeModalParams = {
-  name: typeof ModalName.ClaimFee
-  initialState: LiquidityModalInitialState
-}
-
-export type OpenModalParams =
-  | { name: ModalNameType; initialState?: undefined }
-  | AddLiquidityModalParams
-  | RemoveLiquidityModalParams
-  | ClaimFeeModalParams
-
-type CloseModalParams = ModalNameType
+export type OpenModalParams = { name: ModalNameType; initialState?: unknown }
 
 export interface ApplicationState {
   readonly chainId: number | null
   readonly openModal: OpenModalParams | null
-  readonly suppressedPopups: PopupType[]
-  /** List of addresses where the graduated wallet card has been dismissed for this session. The same property in the user reducer is if the card has been dismissed for 30 days. */
+  readonly suppressedPopups: string[]
   readonly downloadGraduatedWalletCardsDismissed: string[]
 }
 
@@ -55,23 +29,22 @@ const applicationSlice = createSlice({
         new Set([...state.downloadGraduatedWalletCardsDismissed, walletAddress]),
       )
     },
-    updateChainId(state, action) {
-      const { chainId } = action.payload
-      state.chainId = chainId
+    updateChainId(state, action: PayloadAction<{ chainId: number }>) {
+      state.chainId = action.payload.chainId
     },
     setOpenModal(state, action: PayloadAction<OpenModalParams>) {
       state.openModal = action.payload
     },
-    setCloseModal(state, action: PayloadAction<CloseModalParams | undefined>) {
+    setCloseModal(state, action: PayloadAction<ModalNameType | undefined>) {
       const { payload } = action
-      if (!payload || (state.openModal?.name as any) === payload) {
+      if (!payload || (state.openModal?.name as string) === payload) {
         state.openModal = null
       }
     },
-    addSuppressedPopups(state, { payload: { popupTypes } }) {
+    addSuppressedPopups(state, { payload: { popupTypes } }: PayloadAction<{ popupTypes: string[] }>) {
       state.suppressedPopups = Array.from(new Set([...state.suppressedPopups, ...popupTypes]))
     },
-    removeSuppressedPopups(state, { payload: { popupTypes } }) {
+    removeSuppressedPopups(state, { payload: { popupTypes } }: PayloadAction<{ popupTypes: string[] }>) {
       state.suppressedPopups = state.suppressedPopups.filter((type) => !popupTypes.includes(type))
     },
   },

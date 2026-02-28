@@ -1,18 +1,9 @@
-import Navbar from 'components/NavBar/index'
-import { MobileAppPromoBanner, useMobileAppPromoBannerEligible } from 'components/TopLevelBanners/MobileAppPromoBanner'
-import { UkBanner, useRenderUkBanner } from 'components/TopLevelBanners/UkBanner'
-import { useScroll } from 'hooks/useScroll'
 import { GRID_AREAS } from 'pages/App/utils/shared'
 import { memo } from 'react'
-import { Flex } from 'ui/src'
-import { zIndexes } from 'ui/src/theme'
+import { Flex, Text } from 'ui/src'
+import { INTERFACE_NAV_HEIGHT, zIndexes } from 'ui/src/theme'
 
 export const Header = memo(function Header() {
-  const { isScrolledDown } = useScroll()
-  const isHeaderTransparent = !isScrolledDown
-  const renderUkBanner = useRenderUkBanner()
-  const extensionEligible = useMobileAppPromoBannerEligible()
-
   return (
     <Flex
       id="AppHeader"
@@ -24,7 +15,14 @@ export const Header = memo(function Header() {
       width="100vw"
       top={0}
       zIndex={zIndexes.dropdown}
-      pointerEvents="none"
+      height={INTERFACE_NAV_HEIGHT}
+      minHeight={INTERFACE_NAV_HEIGHT}
+      alignItems="center"
+      justifyContent="center"
+      paddingHorizontal="$spacing24"
+      backgroundColor="$surface1"
+      borderBottomWidth={1}
+      borderBottomColor="$surface3"
     >
       <style>
         {`
@@ -33,19 +31,9 @@ export const Header = memo(function Header() {
           }
         `}
       </style>
-      <Flex position="relative" zIndex={zIndexes.sticky} pointerEvents="auto">
-        {extensionEligible && <MobileAppPromoBanner />}
-        {renderUkBanner && <UkBanner />}
-      </Flex>
-      <Flex
-        width="100%"
-        backgroundColor={isHeaderTransparent ? 'transparent' : '$surface1'}
-        borderBottomColor={isHeaderTransparent ? 'transparent' : '$surface3'}
-        borderBottomWidth={1}
-        pointerEvents="auto"
-      >
-        <Navbar />
-      </Flex>
+      <Text variant="body1" fontWeight="$bold">
+        Basement Studio
+      </Text>
     </Flex>
   )
 })

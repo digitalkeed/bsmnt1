@@ -1,28 +1,21 @@
-import { Hero } from 'pages/Landing/sections/Hero'
-import { Suspense, lazy, memo, useRef } from 'react'
-import { Flex, styled } from 'ui/src'
+import { AboutFigma } from 'pages/Landing/sections/AboutFigma'
+import { CapabilitiesFigma } from 'pages/Landing/sections/CapabilitiesFigma'
+import { ContactFigma } from 'pages/Landing/sections/ContactFigma'
+import { HeroFigma } from 'pages/Landing/sections/HeroFigma'
+import { TeamRosterFigma } from 'pages/Landing/sections/TeamRosterFigma'
+import { WorkFigma } from 'pages/Landing/sections/WorkFigma'
+import { MarqueeTicker } from 'pages/Landing/components/MarqueeTicker'
+import { memo, useRef } from 'react'
+import { Flex } from 'ui/src'
 import { INTERFACE_NAV_HEIGHT } from 'ui/src/theme'
 
-// The Fold is always loaded, but is lazy-loaded because it is not seen without user interaction.
-// Annotating it with webpackPreload allows it to be ready when requested.
-const Fold = lazy(() => import(/* webpackPreload: true */ './Fold'))
+function LandingV2({ transition: _transition }: { transition?: boolean }) {
+  const workSectionRef = useRef<HTMLDivElement | null>(null)
 
-const Rive = lazy(() => import(/* webpackPreload: true */ 'setupRive'))
-
-const Grain = styled(Flex, {
-  position: 'absolute',
-  inset: 0,
-  background: 'url(/images/noise-color.png)',
-  opacity: 0.018,
-  zIndex: 0,
-})
-
-function LandingV2({ transition }: { transition?: boolean }) {
-  const scrollAnchor = useRef<HTMLDivElement | null>(null)
-  const scrollToRef = () => {
-    if (scrollAnchor.current) {
+  const scrollToWork = () => {
+    if (workSectionRef.current) {
       window.scrollTo({
-        top: scrollAnchor.current.offsetTop - 120,
+        top: workSectionRef.current.offsetTop - 120,
         behavior: 'smooth',
       })
     }
@@ -31,17 +24,21 @@ function LandingV2({ transition }: { transition?: boolean }) {
   return (
     <Flex
       position="relative"
-      alignItems="center"
+      alignItems="stretch"
+      flexDirection="column"
       mt={-INTERFACE_NAV_HEIGHT}
       minWidth="100vw"
       data-testid="landing-page"
     >
-      <Grain />
-      <Hero scrollToRef={scrollToRef} transition={transition} />
-      <Suspense>
-        <Rive />
-        <Fold ref={scrollAnchor} />
-      </Suspense>
+      <HeroFigma scrollToRef={scrollToWork} vimeoVideoId={null} />
+      <MarqueeTicker />
+      <div ref={workSectionRef} style={{ minHeight: '100vh', flexShrink: 0 }}>
+        <WorkFigma />
+      </div>
+      <CapabilitiesFigma />
+      <TeamRosterFigma />
+      <AboutFigma />
+      <ContactFigma />
     </Flex>
   )
 }

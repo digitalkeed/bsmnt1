@@ -1,24 +1,19 @@
 {
-  "extends": "../../config/tsconfig/app.json",
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.json",
-    "src/**/*.mts"
-  ],
-  "references": [
-    {
-      "path": "../ui"
-    },
-    {
-      "path": "../utilities"
-    },
-  ],
   "compilerOptions": {
-    "types": [
-      "chrome",
-      "jest"
-    ]
-  }
+    "target": "ESNext",
+    "module": "esnext",
+    "lib": ["ESNext"],
+    "strict": true,
+    "skipLibCheck": true,
+    "composite": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"]
 }

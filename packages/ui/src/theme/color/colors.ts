@@ -186,15 +186,15 @@ const sporeLight = {
   surface4: 'rgba(19, 19, 19, 0.08)',
   surface5: 'rgba(0,0,0,0.04)',
   surface5Hovered: 'rgba(0,0,0,0.06)',
-  accent1: '#FF37C7',
-  accent1Hovered: '#E500A5',
-  accent2: 'rgba(255, 55, 199, 0.08)',
-  accent2Hovered: 'rgba(255, 55, 199, 0.12)',
-  accent2Solid: '#FFF3FC',
+  accent1: '#FFD400',
+  accent1Hovered: '#FF8C00',
+  accent2: 'rgba(255, 212, 0, 0.08)',
+  accent2Hovered: 'rgba(255, 212, 0, 0.12)',
+  accent2Solid: '#FFFCF0',
   accent3: '#222222',
   accent3Hovered: colors.black,
 
-  DEP_accentSoft: '#FC72FF33', //33 = 20%
+  DEP_accentSoft: '#FFD40033', //33 = 20%
   DEP_blue400: '#4C82FB',
 
   statusSuccess: '#0C8911',
@@ -235,16 +235,16 @@ const sporeDark = {
   surface4: 'rgba(255,255,255,0.20)',
   surface5: 'rgba(0,0,0,0.04)',
   surface5Hovered: 'rgba(0,0,0,0.06)',
-  accent1: '#FF37C7',
-  accent1Hovered: '#E500A5',
+  accent1: '#FFD400',
+  accent1Hovered: '#FF8C00',
 
-  accent2: 'rgba(255, 55, 199, 0.08)',
-  accent2Hovered: 'rgba(255, 55, 199, 0.12)',
-  accent2Solid: '#261621',
+  accent2: 'rgba(255, 212, 0, 0.08)',
+  accent2Hovered: 'rgba(255, 212, 0, 0.12)',
+  accent2Solid: '#332A00',
   accent3: colors.white,
   accent3Hovered: '#F5F5F5',
 
-  DEP_accentSoft: '#FC72FF33', //33 = 20%
+  DEP_accentSoft: '#FFD40033', //33 = 20%
   DEP_blue400: '#4C82FB',
 
   statusSuccess: '#21C95E',
@@ -310,14 +310,14 @@ export const colorsLight = {
   statusWarning2: sporeLight.statusWarning2,
   statusWarning2Hovered: sporeLight.statusWarning2Hovered,
 
-  DEP_backgroundBranded: '#FCF7FF',
+  DEP_backgroundBranded: '#FFFCF0',
   DEP_backgroundOverlay: opacifyRaw(60, colors.white),
 
-  DEP_accentBranded: DEP_accentColors.magentaVibrant,
-  DEP_shadowBranded: DEP_accentColors.magentaVibrant,
+  DEP_accentBranded: '#FFD400',
+  DEP_shadowBranded: '#FFD400',
 
-  DEP_brandedAccentSoft: DEP_accentColors.magenta100,
-  DEP_magentaDark: opacifyRaw(12, DEP_accentColors.magentaVibrant),
+  DEP_brandedAccentSoft: '#FFFCF0',
+  DEP_magentaDark: opacifyRaw(12, '#FFD400'),
 
   DEP_fiatBanner: colors.fiatOnRampBanner,
 
@@ -397,15 +397,14 @@ export const colorsDark = {
   statusWarning2: sporeDark.statusWarning2,
   statusWarning2Hovered: sporeDark.statusWarning2Hovered,
 
-  DEP_backgroundBranded: '#100D1C',
+  DEP_backgroundBranded: '#2B2400',
   DEP_backgroundOverlay: opacifyRaw(10, colors.white),
 
-  DEP_accentBranded: DEP_accentColors.magentaVibrant,
-  // TODO(MOB-160): accommodate one-off color in cleaner way
-  DEP_shadowBranded: '#B60ACF',
+  DEP_accentBranded: '#FFD400',
+  DEP_shadowBranded: '#FFD400',
 
-  DEP_brandedAccentSoft: '#46244F', // git blame Chelsy
-  DEP_magentaDark: opacifyRaw(12, DEP_accentColors.magentaVibrant),
+  DEP_brandedAccentSoft: '#FFFCF0',
+  DEP_magentaDark: opacifyRaw(12, '#FFD400'),
 
   DEP_fiatBanner: colors.fiatOnRampBanner,
 

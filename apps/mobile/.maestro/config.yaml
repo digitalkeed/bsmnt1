@@ -1,7 +1,0 @@
-flows:
-  - 'flows/onboarding/*'
-  - 'flows/swap/*'
-  - 'flows/restore/*'
-baselineBranch: main
-executionOrder:
-  continueOnFailure: true

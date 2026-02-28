@@ -20,16 +20,16 @@ const adjustedSize = (fontSize: number): number => {
 // on web, it's the full family name in the file
 const fontFamilyByPlatform = {
   android: {
-    medium: 'Basel-Grotesk-Medium',
-    book: 'Basel-Grotesk-Book',
+    medium: 'Raleway-Medium',
+    book: 'Raleway-Regular',
   },
   ios: {
-    medium: 'Basel Grotesk',
-    book: 'Basel Grotesk',
+    medium: 'Raleway',
+    book: 'Raleway',
   },
   web: {
-    medium: 'Basel Grotesk Medium',
-    book: 'Basel Grotesk Book',
+    medium: 'Raleway Medium',
+    book: 'Raleway',
   },
 }
 
@@ -45,12 +45,12 @@ const fontFamily = {
   },
 }
 
-const baselMedium = isWeb
-  ? 'Basel, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+const ralewayMedium = isWeb
+  ? 'Raleway, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
   : fontFamily.sansSerif.medium
 
-const baselBook = isWeb
-  ? 'Basel, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+const ralewayRegular = isWeb
+  ? 'Raleway, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
   : fontFamily.sansSerif.book
 
 type SansSerifFontFamilyKey = keyof typeof fontFamily.sansSerif
@@ -193,12 +193,12 @@ export const fonts = {
 // TODO: Tamagui breaks font weights on Android if face *not* defined
 // but breaks iOS if face is defined
 const face = {
-  [defaultWeights.book]: { normal: baselBook },
-  [defaultWeights.medium]: { normal: baselMedium },
+  [defaultWeights.book]: { normal: ralewayRegular },
+  [defaultWeights.medium]: { normal: ralewayMedium },
 }
 
 export const headingFont = createFont({
-  family: baselBook,
+  family: ralewayRegular,
   ...(isAndroid ? { face } : null),
   size: {
     small: fonts.heading3.fontSize,
@@ -216,7 +216,7 @@ export const headingFont = createFont({
 })
 
 export const subHeadingFont = createFont({
-  family: baselBook,
+  family: ralewayRegular,
   ...(isAndroid ? { face } : null),
   size: {
     small: fonts.subheading2.fontSize,
@@ -235,7 +235,7 @@ export const subHeadingFont = createFont({
 // so i'm filling in blanks (adding medium here), but will need to fix this properly in tamagui...
 
 export const bodyFont = createFont({
-  family: baselBook,
+  family: ralewayRegular,
   ...(isAndroid ? { face } : null),
   size: {
     micro: fonts.body4.fontSize,
@@ -255,7 +255,7 @@ export const bodyFont = createFont({
 })
 
 export const buttonFont = createFont({
-  family: baselMedium,
+  family: ralewayMedium,
   size: {
     micro: fonts.buttonLabel4.fontSize,
     small: fonts.buttonLabel3.fontSize,
@@ -282,3 +282,10 @@ export const allFonts = {
   body: bodyFont,
   button: buttonFont,
 }
+
+// Landing page (Figma) typography — Bebas Neue (display) + Space Mono (body)
+// Used only in landing sections to avoid affecting the rest of the app.
+export const landingFontFamilies = {
+  display: 'Bebas Neue, sans-serif',
+  body: '"Space Mono", monospace',
+} as const

@@ -8,7 +8,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Anchor, Flex, Separator, Text, styled } from 'ui/src'
 import { iconSizes } from 'ui/src/theme'
-import { ModalName } from 'uniswap/src/features/telemetry/constants'
+const MODAL_NAME_PRIVACY = 'Privacy'
 
 const SOCIAL_ICONS_SIZE = `${iconSizes.icon32}px`
 
@@ -69,7 +69,7 @@ function FooterSection({ title, items }: { title: string; items: MenuItem[] }) {
 
 export function Footer() {
   const { t } = useTranslation()
-  const { toggleModal: togglePrivacyPolicy } = useModalState(ModalName.PrivacyPolicy)
+  const { toggleModal: togglePrivacyPolicy } = useModalState(MODAL_NAME_PRIVACY)
   const tabsContent = useTabsContent()
   const appSectionItems: MenuItem[] = useMemo(() => {
     return tabsContent.map((tab) => ({
